@@ -14,8 +14,8 @@ package br.edu.ifes.ci.si;
  */
 public class Aresta implements Comparable<Aresta> {
 
-    private final int v1;
-    private final int v2;
+    private final Vertice v1;
+    private final Vertice v2;
     private final double peso;
 
     /**
@@ -25,11 +25,11 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IndexOutOfBoundsException se o vértice 1 ou vértice 2 forem negativos
      * @throws IllegalArgumentException se o peso for um valor não numérico
      */
-    public Aresta(int v1, int v2) {
-        if (v1 < 0) {
+    public Aresta(Vertice v1, Vertice v2) {
+        if (v1.getVertice() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
-        if (v2 < 0) {
+        if (v2.getVertice() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
         this.v1 = v1;
@@ -45,11 +45,11 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IndexOutOfBoundsException se o vértice 1 ou vértice 2 forem negativos
      * @throws IllegalArgumentException se o peso for um valor não numérico
      */
-    public Aresta(int v1, int v2, double peso) {
-        if (v1 < 0) {
+    public Aresta(Vertice v1, Vertice v2, double peso) {
+        if (v1.getVertice() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
-        if (v2 < 0) {
+        if (v2.getVertice() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
         if (Double.isNaN(peso)) {
@@ -60,11 +60,11 @@ public class Aresta implements Comparable<Aresta> {
         this.peso = peso;
     }
     
-    public int getV1() {
+    public Vertice getV1() {
         return v1;
     }
 
-    public int getV2() {
+    public Vertice getV2() {
         return v2;
     }
 
@@ -80,7 +80,7 @@ public class Aresta implements Comparable<Aresta> {
      * Retorna um vértice qualquer desta aresta (origem desta aresta).
      * @return vértice 1 desta aresta
      */
-    public int umVertice() {
+    public Vertice umVertice() {
         return getV1();
     }
 
@@ -91,10 +91,10 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IllegalArgumentException se o vértico do parâmetro não for um dos vértices da aresta
      */
     public int outroVertice(int vertice) {
-        if (vertice == getV1()) {
-            return getV2();
-        } else if (vertice == getV2()) {
-            return getV1();
+        if (vertice == getV1().getVertice()) {
+            return getV2().getVertice();
+        } else if (vertice == getV2().getVertice()) {
+            return getV1().getVertice();
         } else {
             throw new IllegalArgumentException("Vértice inválido");
         }
@@ -116,9 +116,9 @@ public class Aresta implements Comparable<Aresta> {
      */
     public String toString() {
         if(this.peso != 0)
-            return String.format("%d-%d %.5f", getV1(), getV2(), peso);
+            return String.format("%d-%d %.5f", getV1().getVertice(), getV2().getVertice(), peso);
         else
-            return String.format("%d", getV2());
+            return String.format("%d", getV2().getVertice());
     }
 
     /**

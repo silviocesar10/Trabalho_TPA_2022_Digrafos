@@ -4,7 +4,7 @@
  */
 package br.edu.ifes.ci.si;
 
-import java.util.List;
+
 
 /**
  *
@@ -13,7 +13,30 @@ import java.util.List;
 public class Vertice {
     private int vertice;
     private int autor;
-    //private List<Aresta>[] adj;
+   
+    
+    
+    public Vertice(int vertice, int autor) {
+        this.vertice = vertice;
+        this.autor = autor;
+    }
+
+    
+    public int getVertice() {
+        return vertice;
+    }
+
+    public void setVertice(int vertice) {
+        this.vertice = vertice;
+    }
+
+    public int getAutor() {
+        return autor;
+    }
+
+    public void setAutor(int autor) {
+        this.autor = autor;
+    }
     
     
     

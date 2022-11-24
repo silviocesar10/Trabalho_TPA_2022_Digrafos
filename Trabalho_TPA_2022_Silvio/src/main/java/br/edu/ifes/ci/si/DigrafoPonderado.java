@@ -64,8 +64,16 @@ public class DigrafoPonderado {
     public DigrafoPonderado(In in) {
         this(in.readInt());
         int A = in.readInt();
+	int autores[] = new int[A];
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
-        //esse for deve fazer a leitura do arquivo, ainda nao foi modificado para o padrao novo
+	//esse for vai ler a relação de posicao vertice = autor correspondente em
+	//relação aos autores referenciados e armazena no vetor autores
+	for(int j = 0; j < A; i++){
+	   int x = in.readInt();
+	   int y = in.readInt();
+	   autores[x] = y;
+	}
+	//esse for deve fazer a leitura do arquivo, ainda nao foi modificado para o padrao novo
         for (int i = 0; i < A; i++) {
             int v1 = in.readInt();
             int v2 = in.readInt();
@@ -73,7 +81,8 @@ public class DigrafoPonderado {
             if (v2 < 0 || v2 >= V) throw new IndexOutOfBoundsException("vértice " + v2 + " não está entre 0 e " + (V-1));
             double peso = in.readDouble();
             //no lugar dos 0 deveria estar o numero que representa o autor, esse for precisa ser refeito
-            addAresta(new Aresta(new Vertice(v1,0), new Vertice(v2,0), peso));
+            //addAresta(new Aresta(new Vertice(v1,0), new Vertice(v2,0), peso));
+            addAresta(new Aresta(new Vertice(v1,autores[v1]), new Vertice(v2,autores[v2]), peso));
         }
     }
 

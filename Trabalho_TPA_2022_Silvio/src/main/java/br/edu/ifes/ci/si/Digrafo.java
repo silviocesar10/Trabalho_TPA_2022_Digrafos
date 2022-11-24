@@ -75,7 +75,7 @@ public class Digrafo {
             int v2 = in.readInt();
             if (v1 < 0 || v1 >= V) throw new IndexOutOfBoundsException("vértice " + v1 + " não está entre 0 e " + (V-1));
             if (v2 < 0 || v2 >= V) throw new IndexOutOfBoundsException("vértice " + v2 + " não está entre 0 e " + (V-1));
-            addAresta(new Aresta(v1, v2, 0));//Peso igual a zero para aresta (dígrafo não ponderado)
+           // addAresta(new Aresta(v1, v2, 0));//Peso igual a zero para aresta (dígrafo não ponderado)
         }
     }
 
@@ -110,8 +110,8 @@ public class Digrafo {
      * @throws IndexOutOfBoundsException caso extremidades não estejam entre 0 e V-1
      */
     public void addAresta(Aresta a) {
-        int v1 = a.getV1();
-        int v2 = a.getV2();
+        int v1 = a.getV1().getVertice();
+        int v2 = a.getV2().getVertice();
         validaVertice(v1);
         validaVertice(v2);
         adj[v1].add(a);
@@ -149,6 +149,7 @@ public class Digrafo {
      * Retorna uma representação String deste dígrafo.
      * @return uma representação String deste dígrafo
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(V + " " + A + NEWLINE);

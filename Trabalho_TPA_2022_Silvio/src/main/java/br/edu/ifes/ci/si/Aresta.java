@@ -17,6 +17,7 @@ public class Aresta implements Comparable<Aresta> {
     private final Vertice v1;
     private final Vertice v2;
     private final double peso;
+ 
 
     /**
      * Inicializa uma aresta (sem peso) entre vértices.

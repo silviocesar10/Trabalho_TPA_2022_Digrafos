@@ -67,15 +67,22 @@ public class Digrafo {
      * @throws IllegalArgumentException se o número de vértices ou arestas for negativo
      */
     public Digrafo(In in) {
-        this(in.readInt());
+        int nV =in.readInt();
         int A = in.readInt();
+        int autores[] = new int[nV];
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
+        if (nV < 0) throw new IllegalArgumentException("Número de vertices deve ser não negativo");
+        for(int x =0; x < nV; x++){
+            int a1 = in.readInt();
+            int a2 = in.readInt();
+            autores[a1] = a2;
+        }
         for (int i = 0; i < A; i++) {
             int v1 = in.readInt();
             int v2 = in.readInt();
             if (v1 < 0 || v1 >= V) throw new IndexOutOfBoundsException("vértice " + v1 + " não está entre 0 e " + (V-1));
             if (v2 < 0 || v2 >= V) throw new IndexOutOfBoundsException("vértice " + v2 + " não está entre 0 e " + (V-1));
-           // addAresta(new Aresta(v1, v2, 0));//Peso igual a zero para aresta (dígrafo não ponderado)
+            addAresta(new Aresta(new Vertice(v1,autores[v1]), new Vertice(v2, autores[v2])));//Peso igual a zero para aresta (dígrafo não ponderado)
         }
     }
 

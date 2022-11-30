@@ -67,12 +67,11 @@ public class Digrafo {
      * @throws IllegalArgumentException se o número de vértices ou arestas for negativo
      */
     public Digrafo(In in) {
-        int nV =in.readInt();
+        this(in.readInt());
         int A = in.readInt();
-        int autores[] = new int[nV];
+        int autores[] = new int[this.V];
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
-        if (nV < 0) throw new IllegalArgumentException("Número de vertices deve ser não negativo");
-        for(int x =0; x < nV; x++){
+        for(int x =0; x < this.V; x++){
             int a1 = in.readInt();
             int a2 = in.readInt();
             autores[a1] = a2;

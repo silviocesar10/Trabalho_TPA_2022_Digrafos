@@ -534,6 +534,7 @@ public final class StdIn {
     /**
      * Interactive test of basic functionality.
      */
+    /*
     public static void main(String[] args) {
 
         System.out.print("Type a string: ");
@@ -557,5 +558,6 @@ public final class StdIn {
         System.out.println();
 
     }
+    */
 
 }

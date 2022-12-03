@@ -30,7 +30,7 @@ public class AlgoritimoTopAutores {
         //correspondente do autor no vetor
         for(int i =0; i < numV; i++){
             for(Vertice v : listaV){
-                autores[v.getAutor()] = autores[v.getAutor()] + 1;
+                autores[v.getVertice()] = autores[v.getVertice()] + 1;
             }
         }
         

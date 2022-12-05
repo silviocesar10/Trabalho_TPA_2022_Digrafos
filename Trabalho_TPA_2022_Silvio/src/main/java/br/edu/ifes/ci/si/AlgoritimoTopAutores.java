@@ -28,9 +28,11 @@ public class AlgoritimoTopAutores {
         
         //pra cada vertice que for interando eu adiciono mais 1 em cima do valor atual na posição
         //correspondente do autor no vetor
-        for(int i =0; i < numV; i++){
+        for(int i =0; i < numV; i++){ 		
             for(Vertice v : listaV){
+		if(v.getAutor() == i){
                 autores[v.getVertice()] = autores[v.getVertice()] + 1;
+		}
             }
         }
         

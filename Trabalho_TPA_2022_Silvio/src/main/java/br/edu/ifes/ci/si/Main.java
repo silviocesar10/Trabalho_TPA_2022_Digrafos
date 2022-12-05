@@ -15,12 +15,14 @@ public class Main {
 
     public static void main(String[] args) {
         In in = new In(args[0]);
-        int vo = Integer.parseInt(args[1]);
+        //int vo = Integer.parseInt(args[1]);
         //System.out.println("Hello World!");
-        menu(in, vo);
+        //menu(in, vo);
+        menu(in);
     }
     
-    public static void menu(In in, int vo)
+    //public static void menu(In in, int vo)
+    public static void menu(In in)
     {
         Scanner sc = new Scanner(System.in);
         int op = 0;
@@ -30,14 +32,17 @@ public class Main {
             op = sc.nextInt();
             switch(op){
                 case 1: 
-                    AlgoritmoBFSDigrafoMenorCaminho algoritmoBFS = new AlgoritmoBFSDigrafoMenorCaminho(G, vo);
-                    for (int v = 0; v < G.V(); v++) 
-                    {
-                        if (algoritmoBFS.temCaminhoPara(v)) {
-                            System.out.printf("%d para %d (%d):  ", vo, v, algoritmoBFS.distanciaPara(v));
-                            for (int x : algoritmoBFS.caminhoPara(v)) 
+                    System.out.println("Digite a origem");
+		    int og = sc.nextInt(); 
+                    System.out.println("Digite o destino");
+		    int de = sc.nextInt();
+                    AlgoritmoBFSDigrafoMenorCaminho algoritmoBFS = new AlgoritmoBFSDigrafoMenorCaminho(G, og);
+                        if (algoritmoBFS.temCaminhoPara(de)) {
+                           System.out.printf("%d para %d (%d):  ", og, de, algoritmoBFS.distanciaPara(de));
+			   
+                            for (int x : algoritmoBFS.caminhoPara(de)) 
                             {
-                                if (x == vo) {
+                                if (x == og) {
                                     System.out.print(x);
                                 } else {
                                     System.out.print("->" + x);
@@ -45,9 +50,9 @@ public class Main {
                             }
                             System.out.println();
                         } else {
-                            System.out.printf("%d para %d (-):  não conectado\n", vo, v);
+                            System.out.printf("%d para %d (-):  não conectado\n", og, de);
                         }
-                    }
+			
                     break;
                 case 4:
                     AlgoritimoTopAutores ata = new AlgoritimoTopAutores(G);

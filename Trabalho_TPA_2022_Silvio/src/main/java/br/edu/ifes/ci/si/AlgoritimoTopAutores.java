@@ -25,15 +25,12 @@ public class AlgoritimoTopAutores {
         for(int j =0; j < numV; j++){
             autores[j] = 0;
         }
-        
-        //pra cada vertice que for interando eu adiciono mais 1 em cima do valor atual na posição
-        //correspondente do autor no vetor
-        for(int i =0; i < numV; i++){ 		
-            for(Vertice v : listaV){
-		if(v.getAutor() == i){
-                autores[v.getVertice()] = autores[v.getVertice()] + 1;
-		}
-            }
+
+        /**
+         * Como você referencia os autores pelos indices de autores[], ao interar a lista de artigos, você soma um artigo ao autor.
+          */
+        for(Vertice v : listaV){
+            autores[v.getAutor()]++;
         }
         
         //for para printar o vetor de autores atualizados
@@ -41,7 +38,7 @@ public class AlgoritimoTopAutores {
             if(autores[k] == 0){
                 k++;
             }else{
-                System.out.println("["+k+"]: " + autores[k]);
+                System.out.printf("%d: %d", k, autores[k]);
                 k++;
             }
         }

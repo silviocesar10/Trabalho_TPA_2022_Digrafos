@@ -27,10 +27,10 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IllegalArgumentException se o peso for um valor não numérico
      */
     public Aresta(Vertice v1, Vertice v2) {
-        if (v1.getVertice() < 0) {
+        if (v1.getArtigo() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
-        if (v2.getVertice() < 0) {
+        if (v2.getArtigo() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
         this.v1 = v1;
@@ -47,10 +47,10 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IllegalArgumentException se o peso for um valor não numérico
      */
     public Aresta(Vertice v1, Vertice v2, double peso) {
-        if (v1.getVertice() < 0) {
+        if (v1.getArtigo() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
-        if (v2.getVertice() < 0) {
+        if (v2.getArtigo() < 0) {
             throw new IndexOutOfBoundsException("Vértice deve ser um inteiro não negativo");
         }
         if (Double.isNaN(peso)) {
@@ -92,10 +92,10 @@ public class Aresta implements Comparable<Aresta> {
      * @throws IllegalArgumentException se o vértico do parâmetro não for um dos vértices da aresta
      */
     public int outroVertice(int vertice) {
-        if (vertice == getV1().getVertice()) {
-            return getV2().getVertice();
-        } else if (vertice == getV2().getVertice()) {
-            return getV1().getVertice();
+        if (vertice == getV1().getArtigo()) {
+            return getV2().getArtigo();
+        } else if (vertice == getV2().getArtigo()) {
+            return getV1().getArtigo();
         } else {
             throw new IllegalArgumentException("Vértice inválido");
         }
@@ -117,9 +117,9 @@ public class Aresta implements Comparable<Aresta> {
      */
     public String toString() {
         if(this.peso != 0)
-            return String.format("%d-%d %.5f", getV1().getVertice(), getV2().getVertice(), peso);
+            return String.format("%d-%d %.5f", getV1().getArtigo(), getV2().getArtigo(), peso);
         else
-            return String.format("%d", getV2().getVertice());
+            return String.format("%d", getV2().getArtigo());
     }
 
     /**

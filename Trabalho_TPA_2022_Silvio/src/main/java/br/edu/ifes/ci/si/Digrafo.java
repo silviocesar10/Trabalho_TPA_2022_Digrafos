@@ -41,8 +41,8 @@ public class Digrafo {
 
     private final int V;         // número de vértices no dígrafo
     private int A;               // número de arestas no dígrafo
-    private List<Aresta>[] adj;  // adj[v1] = lista de adjacência do vértice v1
-    private ArrayList<Vertice> lV;
+    private List<Aresta>[] referencias;  // adj[v1] = lista de adjacência do vértice v1
+    private ArrayList<Vertice> artigos; // Lista de vertices do digrafo
     
     /**
      * Inicializa um dígrafo com V vertices e 0 arestas.
@@ -53,9 +53,9 @@ public class Digrafo {
         if (V < 0) throw new IllegalArgumentException("Número de vértices no dígrafo deve ser não negativo");
         this.V = V;
         this.A = 0;
-        adj = new ArrayList[V];
+        referencias = new ArrayList[V];
         for (int v = 0; v < V; v++)
-            adj[v] = new ArrayList<>();
+            referencias[v] = new ArrayList<>();
     }
 
 
@@ -70,25 +70,18 @@ public class Digrafo {
     public Digrafo(In in) {
         this(in.readInt());
         int A = in.readInt();
-        int autores[] = new int[this.V];
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
-        for(int x =0; x < this.V; x++){
-            int a1 = in.readInt();
-            int a2 = in.readInt();
-            autores[a1] = a2;
+        for(int line = 0; line < this.V; line++){
+            int artigo = in.readInt();
+            int autor = in.readInt();
+            this.artigos.add(new Vertice(artigo, autor));
         }
         for (int i = 0; i < A; i++) {
             int v1 = in.readInt();
             int v2 = in.readInt();
             if (v1 < 0 || v1 >= V) throw new IndexOutOfBoundsException("vértice " + v1 + " não está entre 0 e " + (V-1));
             if (v2 < 0 || v2 >= V) throw new IndexOutOfBoundsException("vértice " + v2 + " não está entre 0 e " + (V-1));
-            //crio os vertices separadamente e armazeno em uma
-            //estrutura separada que sera usada para rankear os autores
-            Vertice aux = new Vertice(v1,autores[v1]); 
-            Vertice aux2 = new Vertice(v2, autores[v2]);
-            this.lV.add(aux);
-            this.lV.add(aux2);
-            addAresta(new Aresta(aux,aux2));//Peso igual a zero para aresta (dígrafo não ponderado)
+            addAresta(v1, v2);//Peso igual a zero para aresta (dígrafo não ponderado)
         }
     }
 
@@ -122,13 +115,12 @@ public class Digrafo {
      * @param  a a aresta
      * @throws IndexOutOfBoundsException caso extremidades não estejam entre 0 e V-1
      */
-    public void addAresta(Aresta a) {
-        int v1 = a.getV1().getVertice();
-        int v2 = a.getV2().getVertice();
+    public void addAresta(int v1, int v2) {
         validaVertice(v1);
         validaVertice(v2);
-        adj[v1].add(a);
-        A++;
+        Aresta a = new Aresta(getVertice(v1), getVertice(v2));
+        referencias[v1].add(a);
+
     }
 
 
@@ -140,11 +132,11 @@ public class Digrafo {
      */
     public List<Aresta> adj(int v) {
         validaVertice(v);
-        return adj[v];
+        return referencias[v];
     }
     
     public ArrayList<Vertice> getLv(){
-        return this.lV;
+        return this.artigos;
     }
 
 
@@ -172,7 +164,7 @@ public class Digrafo {
         s.append(V + " " + A + NEWLINE);
         for (int v = 0; v < V; v++) {
             s.append(v + ": ");
-            for (Aresta a : adj[v]) {
+            for (Aresta a : referencias[v]) {
                 s.append(a + "  ");
             }
             s.append(NEWLINE);
@@ -181,12 +173,17 @@ public class Digrafo {
     }
 
     /**
-     * Testa a classe Digrafo.
+     *
+     * @param artigo: inteiro que identifica um artigo.
+     * @return o vertice que representa o artigo identificado.
      */
-    /*public static void main(String[] args) {
-        In in = new In(args[0]);
-        Digrafo G = new Digrafo(in);
-        System.out.println(G);
-    }*/
+    public Vertice getVertice(int artigo){
+        for (Vertice v: this.artigos){
+            if(artigo == v.getArtigo()){
+                return v;
+            }
+        }
+        return null;
+    }
 
 }

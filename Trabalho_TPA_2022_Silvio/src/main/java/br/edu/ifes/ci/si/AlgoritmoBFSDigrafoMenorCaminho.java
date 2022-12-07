@@ -67,7 +67,7 @@ public class AlgoritmoBFSDigrafoMenorCaminho {
         while (!f.isEmpty()) {
             int v = f.desenfileira();
             for (Aresta a : G.adj(v)) {
-                int x = a.getV2().getVertice();
+                int x = a.getV2().getArtigo();
                 if (!marcado[x]) {
                     arestaPara[x] = v;
                     distanciaPara[x] = distanciaPara[v] + 1;
@@ -114,34 +114,21 @@ public class AlgoritmoBFSDigrafoMenorCaminho {
         return caminho;
     }
 
-    /**
-     * Testa a classe AlgoritmoBFSDigrafo.
-     */
-    /*
-    public static void main(String[] args) {
-        In in = new In(args[0]);
-        Digrafo G = new Digrafo(in);
-
-        int vo = Integer.parseInt(args[1]);
-        AlgoritmoBFSDigrafo algoritmoBFS = new AlgoritmoBFSDigrafo(G, vo);
-
-        for (int v = 0; v < G.V(); v++) {
-            if (algoritmoBFS.temCaminhoPara(v)) {
-                System.out.printf("%d para %d (%d):  ", vo, v, algoritmoBFS.distanciaPara(v));
-                for (int x : algoritmoBFS.caminhoPara(v)) {
-                    if (x == vo) {
-                        System.out.print(x);
-                    } else {
-                        System.out.print("->" + x);
-                    }
+    public void printCaminho(int artigoOrigem, int artigoDestino){
+        if (temCaminhoPara(artigoDestino)) {
+            System.out.printf("%d para %d (%d):  ", artigoOrigem, artigoDestino, distanciaPara(artigoDestino));
+            for (int x : caminhoPara(artigoDestino)){
+                if (x == artigoDestino) {
+                    System.out.print(x);
+                } else {
+                    System.out.print(x+"->");
                 }
-                System.out.println();
-            } else {
-                System.out.printf("%d para %d (-):  não conectado\n", vo, v);
             }
-
+            System.out.println();
+        } else {
+            System.out.printf("%d para %d (-):  não conectado\n", artigoOrigem, artigoDestino);
         }
     }
-    */
+
 
 }

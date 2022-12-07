@@ -11,23 +11,23 @@ package br.edu.ifes.ci.si;
  * @author silvio
  */
 public class Vertice {
-    private int vertice;
+    private int artigo;
     private int autor;
    
     
     
-    public Vertice(int vertice, int autor) {
-        this.vertice = vertice;
+    public Vertice(int artigo, int autor) {
+        this.artigo = artigo;
         this.autor = autor;
     }
 
     
-    public int getVertice() {
-        return vertice;
+    public int getArtigo() {
+        return artigo;
     }
 
-    public void setVertice(int vertice) {
-        this.vertice = vertice;
+    public void setArtigo(int artigo) {
+        this.artigo = artigo;
     }
 
     public int getAutor() {

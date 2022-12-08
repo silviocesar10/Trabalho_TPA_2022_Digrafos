@@ -71,6 +71,7 @@ public class Digrafo {
         this(in.readInt());
         int A = in.readInt();
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
+        artigos = new ArrayList<Vertice>();
         for(int line = 0; line < this.V; line++){
             int artigo = in.readInt();
             int autor = in.readInt();
@@ -112,7 +113,8 @@ public class Digrafo {
 
     /**
      * Adiciona aresta direcionada a no dígrafo.
-     * @param  a a aresta
+     * @param  v1 vertice origem da aresta
+     * @param  v2 Vertice destino da aresta
      * @throws IndexOutOfBoundsException caso extremidades não estejam entre 0 e V-1
      */
     public void addAresta(int v1, int v2) {
@@ -178,7 +180,7 @@ public class Digrafo {
      * @return o vertice que representa o artigo identificado.
      */
     public Vertice getVertice(int artigo){
-        for (Vertice v: this.artigos){
+        for (Vertice v: artigos){
             if(artigo == v.getArtigo()){
                 return v;
             }

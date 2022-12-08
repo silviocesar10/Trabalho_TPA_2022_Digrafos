@@ -38,7 +38,7 @@ public class AlgoritimoTopAutores {
             if(autores[k] == 0){
                 k++;
             }else{
-                System.out.printf("%d: %d", k, autores[k]);
+                System.out.printf("%d: %d\n", k, autores[k]);
                 k++;
             }
         }

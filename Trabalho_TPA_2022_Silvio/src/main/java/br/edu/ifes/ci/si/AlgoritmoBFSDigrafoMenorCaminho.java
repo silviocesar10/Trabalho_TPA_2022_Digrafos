@@ -115,6 +115,7 @@ public class AlgoritmoBFSDigrafoMenorCaminho {
     }
 
     public void printCaminho(int artigoOrigem, int artigoDestino){
+        System.out.printf("a) O menor caminho entre %d e %d", artigoOrigem, artigoDestino);
         if (temCaminhoPara(artigoDestino)) {
             System.out.printf("%d para %d (%d):  ", artigoOrigem, artigoDestino, distanciaPara(artigoDestino));
             for (int x : caminhoPara(artigoDestino)){

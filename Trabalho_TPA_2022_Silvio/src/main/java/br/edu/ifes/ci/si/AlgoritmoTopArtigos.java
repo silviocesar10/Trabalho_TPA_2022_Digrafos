@@ -27,7 +27,7 @@ public class AlgoritmoTopArtigos {
             if(artigos[k] == 0){
                 k++;
             }else{
-                System.out.printf("%d: %d", k, artigos[k]);
+                System.out.printf("%d: %d\n", k, artigos[k]);
                 k++;
             }
         }

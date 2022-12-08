@@ -20,11 +20,14 @@ public class Main {
     }
 
     public static void todosCaminhos(Digrafo D, int artigoOrigem, int artigoDestino){
+        AlgoritmoTodosCaminhos caminhos = new AlgoritmoTodosCaminhos(D, artigoOrigem, artigoDestino);
+        caminhos.imprimeQtdCaminhos();
 
     }
 
     public static void topArtigos(Digrafo D){
-
+        AlgoritmoTopArtigos topArtigos = new AlgoritmoTopArtigos(D);
+        topArtigos.listaTopArtigos();
     }
 
     public static void topAutores(Digrafo D){
@@ -40,17 +43,27 @@ public class Main {
     
     public static void menu(In in){
 
-        int funcao = 0;
+        int funcao;
 
         Digrafo D = new Digrafo(in);
+        int artigoOrigem = 0;
+        int artigoDestino = 0;
         do{
-            funcao = printMenu(1);
+            funcao = printMenu(0);
+            if(funcao == 1 || funcao == 2){
+                artigoOrigem = printMenu(1);
+                artigoDestino = printMenu(2);
+            }
             switch(funcao){
                 case 1:
-                    int artigoOrigem = printMenu(2);
-                    int artigoDestino = printMenu(3);
                     menorQuantidadeArtigosLidos(D, artigoOrigem, artigoDestino);
 			        break;
+                case 2:
+                    todosCaminhos(D, artigoOrigem, artigoDestino);
+                    break;
+                case 3:
+                    topArtigos(D);
+                    break;
                 case 4:
                     topAutores(D);
                     break;
@@ -73,10 +86,10 @@ public class Main {
             case 0:
                 System.out.println("Digite 1 para encontrar o menor caminho entre dois artigos");
                 System.out.println("Digite 2 para encontrar todos os caminhos entre dois artigos");
-                System.out.println("Digite 3 para o numero de citaçĩes de cada artigo");
-                System.out.println("Digite 3 para o numero de citaçĩes de cada autor");
-                System.out.println("Digite 5 para encerrar a aplicação");
-                System.out.println("\n Digite a opção desejada!!");
+                System.out.println("Digite 3 para o numero de citacoes de cada artigo");
+                System.out.println("Digite 4 para o numero de citacoes de cada autor");
+                System.out.println("Digite 5 para encerrar a aplicacaoo");
+                System.out.print("\nDigite a opção desejada: ");
                 opcao = sc.nextInt();
                 break;
 

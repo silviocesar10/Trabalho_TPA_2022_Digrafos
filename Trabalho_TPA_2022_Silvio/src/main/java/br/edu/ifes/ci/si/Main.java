@@ -20,8 +20,9 @@ public class Main {
     }
 
     public static void todosCaminhos(Digrafo D, int artigoOrigem, int artigoDestino){
-        AlgoritmoTodosCaminhos caminhos = new AlgoritmoTodosCaminhos(D, artigoOrigem, artigoDestino);
-        caminhos.imprimeQtdCaminhos();
+        AlgoritmoTodosCaminhos caminhos = new AlgoritmoTodosCaminhos(D.V());
+        caminhos.printCaminhos(D, artigoOrigem, artigoDestino);
+
 
     }
 

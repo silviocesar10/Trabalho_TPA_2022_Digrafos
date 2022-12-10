@@ -1,35 +1,41 @@
 package br.edu.ifes.ci.si;
 
 public class AlgoritmoTodosCaminhos {
-    private boolean[] noCaminho;        // vértices no caminho atual
-    private Pilha<Integer> caminho;     // o caminho atual
-    private int numeroDeCaminhos;       // número de caminhos simples
+    private boolean[] noCaminho;        // Vetor responsável por armazenar se o vertice x esta no caminho entre vo e vd
+    private Pilha<Integer> caminho;     // Armazena o caminho atual entre vo e vd
+    private int numeroDeCaminhos;       // Armazena a quantidade de caminhos entre vo e vd
 
-    // mostra todos os caminhos simples de vo (vértice origem) para vd (vértice destino) - usando DFS
-    public AlgoritmoTodosCaminhos(Digrafo G, int vo, int vd) {
-        noCaminho = new boolean[G.V()];
+    //Construtor da classe: recebe o numero de vertices para instanciar o vetor que valida os caminhos
+    public AlgoritmoTodosCaminhos(int v) {
+        noCaminho = new boolean[v];
         caminho   = new Pilha<Integer>();
-        System.out.printf("b) Todos os caminhos simples entre %d e %d \n", vo, vd);
-        dfs(G, vo, vd);
+               
     }
-
+    //Função que inicia a busca pelos caminhos existentes
+    public void printCaminhos(Digrafo G, int v, int vd){
+        System.out.printf("b) Todos os caminhos simples entre %d e %d \n", v, vd);
+        dfs(G, v, vd);
+        imprimeQtdCaminhos();
+    }
     // usando a ideia de exploração do método DFS
     private void dfs(Digrafo G, int v, int vd) {
 
-        // adiciona v ao caminho atual
+        //Inclui o vertice v no caminho entre vo e vd
         caminho.empilha(v);
         noCaminho[v] = true;
 
-        // encontrado caminho de v para vd (vértice destino)
+        // Verifica se o algoritmo chegou ao vertice destino, Caso positivo, imprime o caminho e incrementa o total de caminhos
         if (v == vd) {
             imprimeCaminhoAtual();
             numeroDeCaminhos++;
         }
 
-        // considerar todos os vizinhos que continuariam o caminho
+
         else {
+            //Percorre os vertices adjacentes ao vertice atual
             for (Aresta a : G.adj(v)) {
                 int x = a.getV2().getArtigo();
+                //verifica se o vertice x ja está no cominho entre vo e vd, caso negativo, inicia nova exploração, com o metodo DFS partindo de x
                 if (!noCaminho[x])
                     dfs(G, x, vd);
             }
